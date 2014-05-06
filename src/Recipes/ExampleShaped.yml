@@ -1,0 +1,15 @@
+type-recipe: SHAPED
+item-name: TEST
+item-material: DIRT
+item-amount: 1
+item-lore:
+- 'TEST #1'
+shape:
+- aaa
+- aaa
+- aaa
+ingredients:
+  a: GRASS
+is_unlock_default: false
+players-uuid:
+- 69123868-1a7e-3e54-8f88-4c9d5cddb96a

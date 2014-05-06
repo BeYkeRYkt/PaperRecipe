@@ -1,0 +1,10 @@
+type-recipe: SHAPELESS
+item-material: WOOD
+item-name: '&4TEST'
+item-amount: 4
+item-lore:
+- '&3Test'
+- '&1LOL'
+ingredients:
+- PAPER
+is_unlock_default: false

@@ -1,0 +1,7 @@
+title-name: '&4[&fUpgradeCrafting&4]:'
+blueprint: '&9Blueprint'
+for-recipe: '&aFor recipe:'
+added-new-recipe: '&aYou''ve learned a new recipe:&e '
+removed-recipe: '&cYou forgot the recipe:&e '
+you-know-blueprint: '&cYou have already studied this blueprint.'
+need-blueprint: '&cTo create an item should be studied blueprint of the subject'

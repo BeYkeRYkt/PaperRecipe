@@ -1,0 +1,7 @@
+title-name: '&4[&fUpgradeCrafting&4]:'
+blueprint: '&9Чертеж'
+for-create-item: '&aДля создания предмета:'
+added-new-recipe: '&aВы изучили новый чертеж:&e '
+removed-recipe: '&cВы забыли чертеж:&e '
+you-know-this-blueprint: '&cВы уже изучили этот чертеж.'
+need-blueprint: '&cДля создания предмета необходимо изучить его чертеж'
