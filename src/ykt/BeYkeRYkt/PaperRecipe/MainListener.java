@@ -1,9 +1,10 @@
-package ykt.BeYkeRYkt.UpgradeCrafting;
+package ykt.BeYkeRYkt.PaperRecipe;
 
 import java.util.Random;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,13 +14,13 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 
-import ykt.BeYkeRYkt.UpgradeCrafting.Recipes.UpgradeRecipe;
+import ykt.BeYkeRYkt.PaperRecipe.Recipes.UpgradeRecipe;
 
 public class MainListener implements Listener{
 	
-	private UpgradeCrafting plugin;
+	private PaperRecipe plugin;
 
-	public MainListener(UpgradeCrafting plugin){
+	public MainListener(PaperRecipe plugin){
 		this.plugin = plugin;
 	}
 	
@@ -27,9 +28,10 @@ public class MainListener implements Listener{
 	public void onItemCraft(PrepareItemCraftEvent event){
 		Recipe recipe = event.getRecipe();
 		Player player = (Player) event.getView().getPlayer();
-		if(!plugin.getManager().canPlayerCreateItem(player, recipe)){
+		if(!plugin.getManager().canPlayerCreateItem(player, recipe.getResult())){
 		  event.getInventory().setResult(null);
 		  player.sendMessage(Lang.TITLE.toString() + Lang.NEED_BLUEPRINT);
+		  player.getWorld().playSound(player.getLocation(), Sound.ITEM_BREAK, 1, 1);
 	    }
 	}
 	
@@ -42,16 +44,16 @@ public class MainListener implements Listener{
 		if(item.getType() == Material.PAPER && Lang.BLUEPRINT.toString().equals(item.getItemMeta().getDisplayName())){
 			String name = ChatColor.stripColor(item.getItemMeta().getLore().get(1));
 			
-			if(plugin.getManager().isVanillaRecipe(name) && !plugin.getBlueprints().hasBlueprint(player, name)){
-				plugin.getBlueprints().addBlueprintVanilla(player, name);
-			}else if(plugin.getManager().isVanillaRecipe(name) && plugin.getBlueprints().hasBlueprint(player, name)){
+			if(plugin.getManager().isVanillaRecipe(name) && !plugin.getVanillaBlueprints().hasBlueprint(player, name)){
+				plugin.getVanillaBlueprints().addBlueprintVanilla(player, name);
+			}else if(plugin.getManager().isVanillaRecipe(name) && plugin.getVanillaBlueprints().hasBlueprint(player, name)){
 			     player.sendMessage(Lang.TITLE.toString() + Lang.YOU_KNOW_THIS_BLUEPRINT.toString());
 			
 			}else if(plugin.getManager().isUpgradeRecipe(name)){
 				UpgradeRecipe recipe = plugin.getManager().getUpgradeRecipe(name);
-				if(!plugin.getManager().canPlayerCreateItem(player, recipe.getBukkitRecipe())){
+				if(!plugin.getManager().canPlayerCreateItem(player, recipe.getResult())){
 					recipe.addPlayerUnlock(player);
-				}else if(plugin.getManager().canPlayerCreateItem(player, recipe.getBukkitRecipe())){
+				}else if(plugin.getManager().canPlayerCreateItem(player, recipe.getResult())){
 					player.sendMessage(Lang.TITLE.toString() + Lang.YOU_KNOW_THIS_BLUEPRINT.toString());
 				}
 			}
@@ -70,9 +72,9 @@ public class MainListener implements Listener{
             ItemStack item = null;
             
             if(blueprint == 0){
-            item = plugin.getBlueprints().createBlueprintVanilla();
+            item = plugin.getVanillaBlueprints().createBlueprintVanilla();
             }else if(blueprint == 1){
-            item = plugin.getBlueprints().createBlueprintCustom();
+            item = plugin.getVanillaBlueprints().createBlueprintCustom();
             }
             event.getDrops().add(item);
         }

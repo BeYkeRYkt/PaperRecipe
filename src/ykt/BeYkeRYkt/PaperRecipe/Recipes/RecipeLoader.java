@@ -1,4 +1,4 @@
-package ykt.BeYkeRYkt.UpgradeCrafting.Recipes;
+package ykt.BeYkeRYkt.PaperRecipe.Recipes;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 
-import ykt.BeYkeRYkt.UpgradeCrafting.Recipes.RecipeManager.CraftType;
+import ykt.BeYkeRYkt.PaperRecipe.Recipes.RecipeManager.CraftType;
 
 public class RecipeLoader{
 	
@@ -71,12 +71,13 @@ public class RecipeLoader{
 	    String display = config.getString("item-name");
 	    String material = config.getString("item-material");
 	    List<String> lore = config.getStringList("item-lore");
+	    int damage = config.getInt("item-damage");
 	    int amount = config.getInt("item-amount");
 	    
 	    //For LeatherArmorMeta
 	    Color color = config.getColor("armor-color");
 	
-        ItemStack resultStack = new ItemStack(Material.getMaterial(material), amount);
+        ItemStack resultStack = new ItemStack(Material.getMaterial(material), amount, (short) damage);
         
         //===============CUSTOMIZE===========//
         if(display != null || lore != null || color != null){
@@ -156,12 +157,13 @@ public class RecipeLoader{
 		    String display = config.getString("item-name");
 		    String material = config.getString("item-material");
 		    List<String> lore = config.getStringList("item-lore");
+		    int damage = config.getInt("item-damage");
 		    int amount = config.getInt("item-amount");
 		    
 		    //For LeatherArmorMeta
 		    Color color = config.getColor("armor-color");
 		
-            ItemStack resultStack = new ItemStack(Material.getMaterial(material), amount);
+            ItemStack resultStack = new ItemStack(Material.getMaterial(material), amount, (short) damage);
             
             //===============CUSTOMIZE===========//
             if(display != null || lore != null || color != null){

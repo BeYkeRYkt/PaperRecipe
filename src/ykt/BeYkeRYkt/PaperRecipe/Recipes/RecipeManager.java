@@ -1,4 +1,4 @@
-package ykt.BeYkeRYkt.UpgradeCrafting.Recipes;
+package ykt.BeYkeRYkt.PaperRecipe.Recipes;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -10,11 +10,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 
-import ykt.BeYkeRYkt.UpgradeCrafting.UpgradeCrafting;
+
+import ykt.BeYkeRYkt.PaperRecipe.PaperRecipe;
 
 public class RecipeManager{
 	
-	private UpgradeCrafting plugin;
+	private PaperRecipe plugin;
 	private ArrayList<UpgradeRecipe> customRecipes = new ArrayList<UpgradeRecipe>();
 	private RecipeLoader loader;
 	
@@ -23,7 +24,7 @@ public class RecipeManager{
 			//FURNACE;
 	  }
 	
-	public RecipeManager(UpgradeCrafting plugin){
+	public RecipeManager(PaperRecipe plugin){
 		this.plugin = plugin;
 		this.loader = new RecipeLoader(this);
 		loader.load();
@@ -37,7 +38,7 @@ public class RecipeManager{
 		return customRecipes;
 	}
 	
-	public UpgradeCrafting getPlugin(){
+	public PaperRecipe getPlugin(){
 		return plugin;
 	}
 	
@@ -223,10 +224,10 @@ public class RecipeManager{
 	 * @param recipe
 	 * @return
 	 */
-	public boolean canPlayerCreateItem(Player player, Recipe recipe){
+	public boolean canPlayerCreateItem(Player player, ItemStack item){
 		//Если он есть в списке кастомных
-		if(isUpgradeRecipe(recipe.getResult())){
-			UpgradeRecipe uprecipe = getUpgradeRecipe(recipe.getResult());
+		if(isUpgradeRecipe(item)){
+			UpgradeRecipe uprecipe = getUpgradeRecipe(item);
 			//Если он по дефолту закрыт, но игрок открыл его через чертеж
 			if(!uprecipe.isUnlockedDefault() && uprecipe.getUUIDStrings().contains(player.getUniqueId().toString())){
 			return true;
@@ -237,14 +238,14 @@ public class RecipeManager{
 			}
 		
 		//Если он есть в списке ванильных рацептов
-		}else if(isVanillaRecipe(recipe.getResult().getType().name())){
+		}else if(isVanillaRecipe(item.getType().name())){
 			//Если игрок его открыл
-			if(plugin.getBlueprints().hasBlueprint(player, recipe.getResult().getType().name())){
+			if(plugin.getVanillaBlueprints().hasBlueprint(player, item.getType().name())){
 				return true;
 			}
 		
 		//Если его нету ни в ванильных и ни в кастомных 
-		}else if(!isVanillaRecipe(recipe.getResult().getType().name()) && !isUpgradeRecipe(recipe.getResult())){
+		}else if(!isVanillaRecipe(item.getType().name()) && !isUpgradeRecipe(item)){
 			return true;
 		}
 		return false;

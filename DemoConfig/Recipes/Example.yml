@@ -2,12 +2,11 @@ type-recipe: SHAPELESS
 item-name: TEST
 item-material: DIRT
 item-amount: 1
+item-damage: 1
 item-lore:
 - 'TEST #1'
 - 'TEST #2'
 ingredients:
 - EMPTY_MAP
 - GRASS
-is_unlock_default: false
-players-uuid:
-- 69123868-1a7e-3e54-8f88-4c9d5cddb96a
+is_unlock_default: true

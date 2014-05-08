@@ -1,4 +1,4 @@
-package ykt.BeYkeRYkt.UpgradeCrafting;
+package ykt.BeYkeRYkt.PaperRecipe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,24 +6,26 @@ import java.util.Random;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import ykt.BeYkeRYkt.UpgradeCrafting.Recipes.UpgradeRecipe;
+import ykt.BeYkeRYkt.PaperRecipe.Recipes.UpgradeRecipe;
 
-public class Blueprints{
+
+public class VanillaBlueprints{
 	
-	private UpgradeCrafting plugin;
+	private PaperRecipe plugin;
 	
-	public Blueprints(UpgradeCrafting plugin){
+	public VanillaBlueprints(PaperRecipe plugin){
 		this.plugin = plugin;
 	}
 	
 	public boolean hasBlueprint(Player p, String material){
-        List<String> pidlist = plugin.getConfig().getStringList("players." + p.getUniqueId());
+        List<String> pidlist = plugin.getConfig().getStringList("players." + material);
         
-        if(pidlist.contains(material)){
+        if(pidlist.contains(p.getUniqueId().toString())){
         	return true;
         }
         
@@ -67,21 +69,22 @@ public class Blueprints{
     }
 	
     public void addBlueprintVanilla(Player p, String material){
-        List<String> playerCon = plugin.getConfig().getStringList("players."+p.getUniqueId());
-        if(!playerCon.contains(material)){
-            playerCon.add(material);
-            plugin.getConfig().set("players." + p.getUniqueId(), playerCon);
+        List<String> playerCon = plugin.getConfig().getStringList("players."+ material);
+        if(!playerCon.contains(p.getUniqueId().toString())){
+            playerCon.add(p.getUniqueId().toString());
+            plugin.getConfig().set("players." + material, playerCon);
             p.sendMessage(Lang.TITLE.toString() + Lang.ADDED_NEW_RECIPE.toString() + material);
             plugin.saveConfig();
+			p.getWorld().playSound(p.getLocation(), Sound.LEVEL_UP, 1, 1);
         }
     }
     public void removeBlueprintVanilla(Player p, String material){
-        List<String> playerCon = plugin.getConfig().getStringList("players."+p.getUniqueId());
-        if(playerCon.contains(material)){
+        List<String> playerCon = plugin.getConfig().getStringList("players."+material);
+        if(playerCon.contains(p.getUniqueId().toString())){
               for(String strings: playerCon){
-                if(strings.equals(material)){
-                    playerCon.remove(material);
-                    plugin.getConfig().set("players." + p.getUniqueId(), playerCon);
+                if(strings.equals(p.getUniqueId().toString())){
+                    playerCon.remove(p.getUniqueId().toString());
+                    plugin.getConfig().set("players." + material, playerCon);
                     p.sendMessage(Lang.TITLE.toString() + Lang.REMOVED_RECIPE.toString() + material);
                     plugin.saveConfig();
                 }

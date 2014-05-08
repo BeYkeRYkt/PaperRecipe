@@ -1,5 +1,8 @@
-name: UpgradeCrafting
-version: 1.0
+name: PaperRecipe
+version: 1.0-Dev
 author: BeYkeRYkt
-website: "http://dev.bukkit.org/server-mods/upgradecrafting/"
-main: ykt.BeYkeRYkt.UpgradeCrafting.UpgradeCrafting
+website: "http://dev.bukkit.org/server-mods/paperrecipe/"
+main: ykt.BeYkeRYkt.PaperRecipe.PaperRecipe
+commands:
+   pr:
+      description: Main command

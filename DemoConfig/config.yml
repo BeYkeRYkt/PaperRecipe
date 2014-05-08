@@ -1,0 +1,15 @@
+# PaperRecipe v1.0-Dev Configuration
+# by BeYkeRYkt
+Lang: English
+dropChance: 100
+minecraft-recipes-need-blueprints:
+- WOOD
+- WORKBENCH
+- FURNACE
+players:
+  FURNACE:
+  - 69123868-1a7e-3e54-8f88-4c9d5cddb96a
+  WOOD:
+  - 69123868-1a7e-3e54-8f88-4c9d5cddb96a
+  WORKBENCH:
+  - 69123868-1a7e-3e54-8f88-4c9d5cddb96a

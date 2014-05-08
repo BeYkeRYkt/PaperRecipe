@@ -1,4 +1,4 @@
-package ykt.BeYkeRYkt.UpgradeCrafting;
+package ykt.BeYkeRYkt.PaperRecipe;
 
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -7,13 +7,19 @@ import org.bukkit.configuration.file.YamlConfiguration;
  * An enum for requesting strings from the language file.
  */
 public enum Lang {
-    TITLE("title-name", "&4[&fUpgradeCrafting&4]:"),
+    TITLE("title-name", "&4[&fPaperRecipe&4]:"),
+    AUTHOR("author", "Google Translate"),
     BLUEPRINT("blueprint", "&9Blueprint"), 
     FOR_CREATE_ITEM("for-create-item", "&aTo create an item:"), 
     ADDED_NEW_RECIPE("added-new-recipe", "&aYou've learned a new blueprint:&e "),
     REMOVED_RECIPE("removed-recipe", "&cYou forgot the recipe:&e "),
     YOU_KNOW_THIS_BLUEPRINT("you-know-this-blueprint", "&cYou have already studied this blueprint."),
-    NEED_BLUEPRINT("need-blueprint", "&cTo create an item it is necessary to study blueprint");
+    NEED_BLUEPRINT("need-blueprint", "&cTo create an item it is necessary to study blueprint"), 
+    ICON_CHANGE_LANG("icon-change-lang", "&2Change the language"),
+    AVAILABLE_LANGUAGES("available-languages", "&aAvailable languages:"), 
+    ICON_RECIPES("icon-recipes", "&6Recipes"), 
+    ICON_BLUEPRINTS("icon-blueprint", "&9Blueprints"), 
+    AUTHOR_OF_TRANSLATION("author-translation", "&aAuthor of translation: ");
 
     private String path;
     private String def;
@@ -45,7 +51,7 @@ public enum Lang {
             return ChatColor.translateAlternateColorCodes('&', LANG.getString(this.path, def)) + " ";
         return ChatColor.translateAlternateColorCodes('&', LANG.getString(this.path, def));
     }
-
+    
     /**
      * Get the default value of the path.
      *

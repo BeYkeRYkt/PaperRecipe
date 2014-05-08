@@ -1,0 +1,13 @@
+title-name: '&4[&fPaperRecipe&4]:'
+author: Google Translate
+blueprint: '&9Blueprint'
+for-create-item: '&aTo create an item:'
+added-new-recipe: '&aYou''ve learned a new blueprint:&e '
+removed-recipe: '&cYou forgot the recipe:&e '
+you-know-this-blueprint: '&cYou have already studied this blueprint.'
+need-blueprint: '&cTo create an item it is necessary to study blueprint'
+icon-change-lang: '&2Change the language'
+available-languages: '&aAvailable languages:'
+icon-recipes: '&6Recipes'
+icon-blueprint: '&9Blueprints'
+author-translation: '&aAuthor of translation: '

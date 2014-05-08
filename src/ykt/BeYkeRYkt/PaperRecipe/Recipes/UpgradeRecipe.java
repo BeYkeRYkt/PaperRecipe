@@ -1,18 +1,20 @@
-package ykt.BeYkeRYkt.UpgradeCrafting.Recipes;
+package ykt.BeYkeRYkt.PaperRecipe.Recipes;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 
-import ykt.BeYkeRYkt.UpgradeCrafting.Lang;
-import ykt.BeYkeRYkt.UpgradeCrafting.UpgradeCrafting;
+import ykt.BeYkeRYkt.PaperRecipe.Lang;
+import ykt.BeYkeRYkt.PaperRecipe.PaperRecipe;
+
 
 
 public class UpgradeRecipe{
@@ -29,7 +31,7 @@ public class UpgradeRecipe{
 		this.recipe = recipe;
 		this.name = filename;
 		
-		String folder = UpgradeCrafting.getInstance().getDataFolder() + "/Recipes/";
+		String folder = PaperRecipe.getInstance().getDataFolder() + "/Recipes/";
 		this.file = new File(folder, name + ".yml");
 		
 		this.config = YamlConfiguration.loadConfiguration(file);
@@ -72,6 +74,7 @@ public class UpgradeRecipe{
 			getUUIDStrings().add(player.getUniqueId().toString());
 			save("players-uuid", getUUIDStrings());
 			player.sendMessage(Lang.TITLE.toString() + Lang.ADDED_NEW_RECIPE.toString() + getName());
+			player.getWorld().playSound(player.getLocation(), Sound.LEVEL_UP, 1, 1);
 		}
 	}
 	
